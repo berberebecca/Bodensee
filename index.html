@@ -2,19 +2,24 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bodensee 2024</title>
-</head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bodensee 2024</title>
 
-<style>
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
+  <style>
     body {
         margin: 0 auto;
         padding: 0 15rem;
         font-size: 20px;
         font-family: 'Manrope', sans-serif;
         text-rendering: optimizeLegibility;
-        background-color: #236ce2; 
+        background-color: blue; 
     }
 
     .content {
@@ -75,47 +80,54 @@
     video {
         max-width: 100%;
         align-items: center;
+        display: block; 
+        margin: 0 auto;
     }
 
     p {
-        line-height: 1.6;
-        margin: 0;
-        padding-bottom: 1.2em;
-        padding-top: 1.2em;
-        color: white;
-    }
-
-    .full-width figure {
-        text-align: center;
+      line-height: 1.6;
+      margin: 0;
+      padding-bottom: 1.2em;
+      padding-top: 1.2em;
+      color: #f4f4f4;
     }
 
     ul {
-        margin: 0;
-        padding-bottom: 1em;
-        line-height: 1.6;
-        color: white;
+      margin: 0;
+      padding-bottom: 1em;
+      line-height: 1.6;
     }
 
     iframe {
-        padding-bottom: 1.2em;
+      padding-bottom: 1.2em;
+    }
+
+    .full-width figure {
+      text-align: center;
     }
 
     code {
-        font-family: 'Courier New', monospace;
-        background: #fff880;
+      font-family: 'Manrope', sans-serif;
+      background: #236ce2;
     }
 
     /* margin on mobile */
     @media (max-width: 640px) {
-        body {
-            font-size: 18px;
-        }
+      body {
+        font-size: 18px;
+      }
 
-        .content {
-            padding-left: 0.5em;
-            padding-right: 0.5em;
-        }
+      .content {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+      }
     }
+  </style>
+  <link href="scrolly-styles.css" rel="stylesheet">
+  <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollama/3.2.0/scrollama.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.3.0/d3.min.js"></script>
+</head>
 </style>
 
 <body>
@@ -136,11 +148,100 @@
         Auf 2024 folgt das Jahr 2016 mit 20 der höchsten gemessenen Pegelstände.
         </p>
     <img src = "AB 2016 Bodensee Wasserstand.png" alt="Die täglichen Wasserstände des Bodensees in den vergangenen Jahren"/>
-    <p>Doch woran liegt das? In welchem Maße spielen die Niederschlagsmengen eine Rolle?
-        Seit 2016 hat es noch in den Jahren 2017, 2021 und in dem laufenden Jahr ähnlich viel geregnet.
-        Dies spiegelt sich auch in dem Pegelstand des Bodensees wieder, aber kann nicht der einzige
-        Faktor sein. Auch die Schneeschmelze - begünstigt
-        durch die Rekordhitze diesen Sommer - und der Zufluss aus den Speicherbecken der 
+    <p>Doch woran liegt das? Seit 2016 hat es noch in den Jahren 2017, 2021 und in dem laufenden Jahr ähnlich viel geregnet.
+        In welchem Maße spiegeln sich die Niederschlagsmengen in dem Pegelstand?</p>
+        <section id="scrolly-images" class="scrolly-container">
+            <div class="sticky-thing">
+              <img src="16_ Regen_See (1).png">
+            </div>
+            <div class="steps-container">
+              <div class="step" id="step1">
+                <div>
+                  <p>Das sind die Niederschlagsmengen und der Pegelstand des Bodensees im Jahr 2016. Die linke Y-Achse bezieht sich auf die Regenmenge, die rechte auf den Pegelstand.</p>
+                  <p>Die Regenmenge scheint den Pegelstand beeinflusst zu haben, dennoch ist der Verlauf nicht exakt derselbe.</p>
+                </div>
+              </div>
+              <div class="step" id="step2">
+                <p>Das ist das Jahr 2017. Der Pegel hatte einige Höhepunkte, wenn es vermehrt geregnet hat.
+                    Der Pegel ist im Verhältnis zur Regenmenge oft stärker angestiegen.
+                </p>
+              </div>
+              <div class="step" id="step3">
+                <p>Dies ist das Jahr 2021. Hier wird die Korrelation zwischen der Regenmenge und dem
+                    Pegelstand besonders gut sichtbar.
+                </p>
+              </div>
+              <div class="step" id="step4">
+                <p>Auch in dem laufenden Jahr wird die Korrelation zwischen Regen und Pegel sichtbar - 
+                    wenn auch nicht an jeder Stelle. Vor allem die Menge an Tagen mit einem hohen Pegel
+                    wurde nicht ausschließlich vom Regen verursacht.
+                </p>
+              </div>
+          </section>
+       <p>Letztendlich lässt sich festhalten, dass der Regen zwar für die diesjährigen Rekordwerte mitverantwortlich war,
+        aber nicht der einzige Faktor sein kann. Denn: Auch die Schneeschmelze - begünstigt
+        durch die Rekordhitze diesen Sommer - sowie der Zufluss aus den Speicherbecken der 
         Alpen beeinflussen den Pegelstand.
     </p>
+   
+   <script>
+    /*************
+    
+    This is the JavaScript that makes the scrolly work 
+    
+    *************/
+
+    /* 
+    This part attaches a scroll to the element with id="scrolly-images"    
+    */
+    (() => {
+      const scroller = scrollama()
+
+      scroller
+        .setup({
+          parent: document.querySelector("#scrolly-images"),
+          step: ".step",
+          offset: 0.6,
+        })
+        .onStepEnter(function ({ element, index, direction }) {
+          const event = new CustomEvent("stepin", { detail: { direction: direction } })
+          element.dispatchEvent(event)
+        })
+        .onStepExit(function ({ element, index, direction }) {
+          const event = new CustomEvent("stepout", { detail: { direction: direction } })
+          if (direction === "up" && element.previousElementSibling) {
+            const event = new CustomEvent("stepin", { detail: { direction: direction } })
+            element.previousElementSibling.dispatchEvent(event)
+          }
+        })
+
+      window.addEventListener("resize", scroller.resize)
+    })()
+
+    /*
+    This part sets up your actions. In this case, it's changing the image in the scrolly container.
+    */
+    d3.select("#step1").on('stepin', (e) => {
+      d3.select(e.target.closest(".scrolly-container")).select("img").attr("src", "16_Regen_See (1).png")
+    })
+
+    d3.select("#step2").on('stepin', (e) => {
+      d3.select(e.target.closest(".scrolly-container")).select("img").attr("src", "17_Regen_See.png")
+    })
+
+    d3.select("#step3").on('stepin', (e) => {
+      d3.select(e.target.closest(".scrolly-container")).select("img").attr("src", "21_Regen_See.png")
+    })
+
+    d3.select("#step4").on('stepin', (e) => {
+      d3.select(e.target.closest(".scrolly-container")).select("img").attr("src", "24_Regen_See.png")
+    })
+
+  </script>
+  <style>
+    /* Change this to adjust the padding between steps */
+    .step {
+      margin-bottom: 70vh;
+    }
+  </style>
 </body>
